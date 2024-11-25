@@ -20,7 +20,7 @@
     "actions": [
       {
         "type": "Action.OpenUrl",
-        "title": "Go to Work Item",
+        "title": "Go to bee",
         "url": "${notificationUrl}"
       }
     ]

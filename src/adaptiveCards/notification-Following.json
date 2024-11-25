@@ -12,6 +12,12 @@
       },
       {
         "type": "TextBlock",
+        "text": "${comment}",
+        "isSubtle": true,
+        "wrap": true
+      },
+      {
+        "type": "TextBlock",
         "text": "${description}",
         "isSubtle": true,
         "wrap": true
@@ -20,7 +26,7 @@
     "actions": [
       {
         "type": "Action.OpenUrl",
-        "title": "Go to Work Item",
+        "title": "Go to bee",
         "url": "${notificationUrl}"
       }
     ]

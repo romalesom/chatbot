@@ -14,12 +14,12 @@
         "outline": "outline.png"
     },
     "name": {
-        "short": "beeXteams Chatbot${{APP_NAME_SUFFIX}}",
-        "full": "Full name for beeXteams Chatbot"
+        "short": "bee360 Notifications",
+        "full": "bee360  Notification  Bot"
     },
     "description": {
-        "short": "Short description of beeXteams Chatbot",
-        "full": "Full description of beeXteams Chatbot"
+        "short": "Bot for Notifications triggered by bee360",
+        "full": "Bot for Notifications triggered by bee360 and also shown in bee360 in Notifications"
     },
     "accentColor": "#FFFFFF",
     "bots": [
