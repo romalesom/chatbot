@@ -21,22 +21,21 @@ server.post(
   restify.plugins.bodyParser(),
   async (req, res) => {
     const cardType = req.header('cardType');
-    const aadObjectId = req.header('aadObjectId'); // AadObjectId des Benutzers
     const { workItem, responsible, comment, url } = req.body;
 
-    if (!cardType || !aadObjectId || !url) {
+    if (!cardType || !url) {
       res.status(400);
       res.json({ error: "Missing required fields" });
       return;
     }
 
-    let cardData: Responsibilities | Activities | Following;
+    let cardData: Responsibilities | Activities | Following ;
     let cardTemplate;
     let title;
 
     switch (cardType) {
       case '1':
-        title = "Responsibility";
+        title = "Responsibility"
         cardData = {
           title: "Responsibility",
           workItem: workItem,
@@ -46,7 +45,7 @@ server.post(
         cardTemplate = responsibilities;
         break;
       case '2':
-        title = "Activity";
+        title = "Activity"
         cardData = {
           title: "Activity",
           workItem: workItem,
@@ -55,7 +54,7 @@ server.post(
         cardTemplate = activities;
         break;
       case '3':
-        title = "Following";
+        title = "Following"
         cardData = {
           title: "Following",
           responsible: responsible,
@@ -73,17 +72,15 @@ server.post(
 
     // Ensure the URL is correctly encoded
     try {
-      cardData.url = encodeURI(cardData.url);
-    } catch {
-      res.status(400);
+    cardData.url = encodeURI(cardData.url);
+    }catch{ 
+      res.status(400)
       res.json({ error: "Invalid url" });
-      return;
     }
-
     // Dynamically create the description
     let description = "";
     let note = "";
-    if (comment) {
+    if(comment){
       note += `  ${comment}`;
     }
     if (workItem) {
@@ -102,19 +99,20 @@ server.post(
       },
     });
 
-    // Find the user by AadObjectId
-    const user = await notificationApp.notification.findMember(
-      async (member) => member.account.aadObjectId === aadObjectId
-    );
+    const pageSize = 100;
+    let continuationToken: string | undefined = undefined;
+    do {
+      const pagedData = await notificationApp.notification.getPagedInstallations(
+        pageSize,
+        continuationToken
+      );
+      const installations = pagedData.data;
+      continuationToken = pagedData.continuationToken;
 
-    if (!user) {
-      res.status(404);
-      res.json({ error: "User not found" });
-      return;
-    }
-
-    // Send the adaptive card to the user
-    await user.sendAdaptiveCard(card);
+      for (const target of installations) {
+        await target.sendAdaptiveCard(card);
+      }
+    } while (continuationToken);
 
     res.json({});
   }
