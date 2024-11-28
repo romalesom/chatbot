@@ -14,12 +14,12 @@
         "outline": "outline.png"
     },
     "name": {
-        "short": "bee360 Notifications",
-        "full": "bee360  Notification  Bot"
+        "short": "Bee360 Notifications",
+        "full": "Bot for Notifications which are triggered by Bee360. Manage your notifications in Bee360 Web or App "
     },
     "description": {
-        "short": "Bot for Notifications triggered by bee360",
-        "full": "Bot for Notifications triggered by bee360 and also shown in bee360 in Notifications"
+        "short": "Bot for Notifications triggered by Bee360",
+        "full": "Bot for Notifications triggered by Bee360 and also shown in Bee360 in Notifications"
     },
     "accentColor": "#FFFFFF",
     "bots": [
