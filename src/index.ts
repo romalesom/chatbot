@@ -22,7 +22,7 @@ server.post(
   async (req, res) => {
     const cardType = req.header('cardType');
     const aadObjectId = req.header('aadObjectId'); // AadObjectId des Benutzers
-    const { workItem, responsible, comment, url } = req.body;
+    const { properties, responsible, comment, url } = req.body;
 
     if (!cardType || !aadObjectId || !url) {
       res.status(400);
@@ -39,7 +39,7 @@ server.post(
         title = "Responsibility";
         cardData = {
           title: "Responsibility",
-          workItem: workItem,
+          properties: properties,
           responsible: responsible,
           url: url,
         };
@@ -49,7 +49,7 @@ server.post(
         title = "Activity";
         cardData = {
           title: "Activity",
-          workItem: workItem,
+          properties: properties,
           url: url,
         };
         cardTemplate = activities;
@@ -59,7 +59,7 @@ server.post(
         cardData = {
           title: "Following",
           responsible: responsible,
-          workItem: workItem,
+          properties: properties,
           comment: comment,
           url: url,
         };
@@ -86,8 +86,8 @@ server.post(
     if (comment) {
       note += `  ${comment}`;
     }
-    if (workItem) {
-      description += ` ${workItem}`;
+    if (properties) {
+      description += ` ${properties}`;
     }
     if (responsible) {
       description += ` by ${responsible}`;
@@ -115,6 +115,9 @@ server.post(
 
     // Send the adaptive card to the user
     await user.sendAdaptiveCard(card);
+
+    // Send a message indicating that the chat is readonly
+    await user.sendMessage("This chat is readonly. You cannot reply to this message.");
 
     res.json({});
   }

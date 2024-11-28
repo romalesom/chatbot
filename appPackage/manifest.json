@@ -4,31 +4,29 @@
     "version": "1.0.0",
     "id": "${{TEAMS_APP_ID}}",
     "developer": {
-        "name": "Teams App, Inc.",
-        "websiteUrl": "https://www.example.com",
-        "privacyUrl": "https://www.example.com/privacy",
-        "termsOfUseUrl": "https://www.example.com/termofuse"
+        "name": "Bee 360",
+        "websiteUrl": "https://www.bee360.com/",
+        "privacyUrl": "https://www.bee360.com/privacy-policy/",
+        "termsOfUseUrl": "https://www.bee360.com/imprint/"
     },
     "icons": {
-        "color": "color.png",
+        "color": "logo2.png",
         "outline": "outline.png"
     },
     "name": {
-        "short": "bee360 Notifications",
-        "full": "bee360  Notification  Bot"
+        "short": "Bee360 Notifications",
+        "full": "Bee360  Notification Bot"
     },
     "description": {
-        "short": "Bot for Notifications triggered by bee360",
-        "full": "Bot for Notifications triggered by bee360 and also shown in bee360 in Notifications"
+        "short": "Bot for Notifications triggered by Bee360",
+        "full": "Bot for Notifications about Responsiblities, Activities or Followed Items which are triggered by Bee360 and are also displayed in Bee360 as notifications. You can manage and configure your notifications in Bee360 Web and App "
     },
     "accentColor": "#FFFFFF",
     "bots": [
         {
             "botId": "${{BOT_ID}}",
             "scopes": [
-                "personal",
-                "team",
-                "groupChat"
+                "personal"
             ],
             "supportsFiles": false,
             "isNotificationOnly": false

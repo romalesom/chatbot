@@ -4,7 +4,7 @@
  */
 export interface Responsibilities {
   title: string;
-  workItem: string;
+  properties: string;
   responsible: string;
   comment?: string;
   url: string;
@@ -12,11 +12,11 @@ export interface Responsibilities {
 
 /**
  * Adaptive Card data model for the default card.
- * workItem: the activity you are required for
+ * properties: the activity you are required for
  */
 export interface Activities {
   title: string;
-  workItem: string;
+  properties: string;
   responsible?: string;
   comment?: string;
   url: string;
@@ -29,7 +29,7 @@ export interface Activities {
 export interface Following {
   title: string;
   responsible: string;
-  workItem: string;
+  properties: string;
   comment: string;
   url: string;
 }

@@ -21,7 +21,7 @@ server.post(
   restify.plugins.bodyParser(),
   async (req, res) => {
     const cardType = req.header('cardType');
-    const { workItem, responsible, comment, url } = req.body;
+    const { properties, responsible, comment, url } = req.body;
 
     if (!cardType || !url) {
       res.status(400);
@@ -35,30 +35,27 @@ server.post(
 
     switch (cardType) {
       case '1':
-        title = "Responsibility"
         cardData = {
           title: "Responsibility",
-          workItem: workItem,
+          properties: properties,
           responsible: responsible,
           url: url,
         };
         cardTemplate = responsibilities;
         break;
       case '2':
-        title = "Activity"
         cardData = {
           title: "Activity",
-          workItem: workItem,
+          properties: properties,
           url: url,
         };
         cardTemplate = activities;
         break;
       case '3':
-        title = "Following"
         cardData = {
           title: "Following",
           responsible: responsible,
-          workItem: workItem,
+          properties: properties,
           comment: comment,
           url: url,
         };
@@ -83,8 +80,8 @@ server.post(
     if(comment){
       note += `  ${comment}`;
     }
-    if (workItem) {
-      description += ` ${workItem}`;
+    if (properties) {
+      description += ` ${properties}`;
     }
     if (responsible) {
       description += ` by ${responsible}`;
