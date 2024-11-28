@@ -1,0 +1,62 @@
+{
+    "_00000000-0000-0000-0000-0000000000001_personal-chat-id": {
+      "activityId": "b98429b3-711b-4a56-b8d3-03b4553675ff",
+      "user": {
+        "id": "user-id-0",
+        "aadObjectId": "00000000-0000-0000-0000-0000000000020"
+      },
+      "bot": {
+        "id": "00000000-0000-0000-0000-00000000000011",
+        "name": "Test Bot"
+      },
+      "conversation": {
+        "id": "personal-chat-id",
+        "conversationType": "personal",
+        "tenantId": "00000000-0000-0000-0000-0000000000001"
+      },
+      "channelId": "msteams",
+      "locale": "en-US",
+      "serviceUrl": "http://localhost:56150/_connector"
+    },
+    "_00000000-0000-0000-0000-0000000000001_group-chat-id": {
+      "activityId": "432d6401-71ee-4636-9bbf-0735709bbbfd",
+      "user": {
+        "id": "user-id-0",
+        "aadObjectId": "00000000-0000-0000-0000-0000000000020"
+      },
+      "bot": {
+        "id": "00000000-0000-0000-0000-00000000000011",
+        "name": "Test Bot"
+      },
+      "conversation": {
+        "id": "group-chat-id",
+        "isGroup": true,
+        "conversationType": "groupChat",
+        "tenantId": "00000000-0000-0000-0000-0000000000001",
+        "name": "Group Chat"
+      },
+      "channelId": "msteams",
+      "locale": "en-US",
+      "serviceUrl": "http://localhost:56150/_connector"
+    },
+    "_00000000-0000-0000-0000-0000000000001_team-id": {
+      "activityId": "a10cfd67-6477-42e4-baaf-4b89da23229d",
+      "user": {
+        "id": "user-id-0",
+        "aadObjectId": "00000000-0000-0000-0000-0000000000020"
+      },
+      "bot": {
+        "id": "00000000-0000-0000-0000-00000000000011",
+        "name": "Test Bot"
+      },
+      "conversation": {
+        "id": "team-id",
+        "isGroup": true,
+        "conversationType": "channel",
+        "tenantId": "00000000-0000-0000-0000-0000000000001"
+      },
+      "channelId": "msteams",
+      "locale": "en-US",
+      "serviceUrl": "http://localhost:56150/_connector"
+    }
+  }

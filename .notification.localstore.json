@@ -1,0 +1,41 @@
+{
+    "_17a5b20f-fd8e-44fa-bfd6-4fc263f8e0b4_a:133iACkm--45C3CLV3yrKdaiIh_d29WctDqSZp-xxrCcHwG1bNJXA89iLW4wbV3JNwmJSp8WjHKTk25upaDnVGRxpLWX2qpjyBlkeaTXUNtR0HzD61aPUU7gsHA6mmV_g": {
+      "activityId": "f:e80bf4d6-4988-06cb-d1da-34f130a01e04",
+      "user": {
+        "id": "29:10H_drN3HVWuZKbdBknbtXPTjmwqNlU9ZAUOSwFYGdGdwp4u-cscCadOlrscPCFOApwjR0Q3y-gSa3ueXoNdHsA",
+        "aadObjectId": "a18ce0a6-7912-484a-aab0-a50e33d5026f"
+      },
+      "bot": {
+        "id": "28:3cd3b5d3-7b80-41b5-a052-288e9186923b",
+        "name": "Bee360 Chatbot"
+      },
+      "conversation": {
+        "conversationType": "personal",
+        "tenantId": "17a5b20f-fd8e-44fa-bfd6-4fc263f8e0b4",
+        "id": "a:133iACkm--45C3CLV3yrKdaiIh_d29WctDqSZp-xxrCcHwG1bNJXA89iLW4wbV3JNwmJSp8WjHKTk25upaDnVGRxpLWX2qpjyBlkeaTXUNtR0HzD61aPUU7gsHA6mmV_g"
+      },
+      "channelId": "msteams",
+      "locale": "en-US",
+      "serviceUrl": "https://smba.trafficmanager.net/de/17a5b20f-fd8e-44fa-bfd6-4fc263f8e0b4/"
+    },
+    "_17a5b20f-fd8e-44fa-bfd6-4fc263f8e0b4_a:1jtQ07-1ldooQknAQzHfPd5Uap3Z4xjPeNyAfP2DDLejrrVE6GODMhFeE229Wcskhc80ddHDXslM0FpQYGWyv2HQQL5kR7c_6tTE1et6FEl13X-HVvIP7LxG4fRydGVFn": {
+      "activityId": "f:1476c1a4-756d-1236-3eb7-c5453b63a08c",
+      "user": {
+        "id": "29:16iMXPeb8chiB9Ka0yCkWSe-QgsrsGdhpKD3sGZBPxsrQn1G2qi1xUsx_r8WtKzpsEQ-S_Jdg9cRr9nn5Hyn-Jg",
+        "aadObjectId": "e1ae2fa3-8ca5-4bdc-9f78-8fff6761c02a"
+      },
+      "bot": {
+        "id": "28:3cd3b5d3-7b80-41b5-a052-288e9186923b",
+        "name": "Bee360 Chatbot"
+      },
+      "conversation": {
+        "conversationType": "personal",
+        "tenantId": "17a5b20f-fd8e-44fa-bfd6-4fc263f8e0b4",
+        "id": "a:1jtQ07-1ldooQknAQzHfPd5Uap3Z4xjPeNyAfP2DDLejrrVE6GODMhFeE229Wcskhc80ddHDXslM0FpQYGWyv2HQQL5kR7c_6tTE1et6FEl13X-HVvIP7LxG4fRydGVFn"
+      },
+      "channelId": "msteams",
+      "locale": "de-DE",
+      "serviceUrl": "https://smba.trafficmanager.net/de/17a5b20f-fd8e-44fa-bfd6-4fc263f8e0b4/"
+    }
+  }
+
