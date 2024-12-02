@@ -52,104 +52,19 @@ server.post(
       return;
     }
 
-    let cardData: Responsibilities | Activities | Following;
-    let cardTemplate;
-    let title;
-
-    switch (cardType) {
-      case '1':
-        title = "Responsibility";
-        cardData = {
-          title: "Responsibility",
-          properties: properties,
-          responsible: responsible,
-          url: url,
-        };
-        cardTemplate = responsibilities;
-        break;
-      case '2':
-        title = "Activity";
-        cardData = {
-          title: "Activity",
-          properties: properties,
-          url: url,
-        };
-        cardTemplate = activities;
-        break;
-      case '3':
-        title = "Following";
-        cardData = {
-          title: "Following",
-          responsible: responsible,
-          properties: properties,
-          comment: comment,
-          url: url,
-        };
-        cardTemplate = following;
-        break;
-      default:
-        res.status(400);
-        res.json({ error: "Invalid cardType" });
-        return;
-    }
-
-    // Ensure the URL is correctly encoded
-    try {
-      cardData.url = encodeURI(cardData.url);
-    } catch {
-      res.status(400);
-      res.json({ error: "Invalid url" });
-      return;
-    }
-
-    // Dynamically create the description
-    let description = "";
-    let note = "";
-    if (comment) {
-      note += `  ${comment}`;
-    }
-    if (properties) {
-      description += ` ${properties}`;
-    }
-    if (responsible) {
-      description += ` by ${responsible}`;
-    }
-
-    const card = new ACData.Template(cardTemplate).expand({
-      $root: {
-        title: title,
-        comment: note,
-        description: description,
-        notificationUrl: url,
-      },
-    });
 
     // Find the user by AadObjectId
     const user = await findUserByAadObjectId(aadObjectId, credentials);
-
-
 
     if (!user) {
       res.status(404);
       res.json({ error: "User not found" });
       return;
     }
-    console.log("Der user:" + user)
-    // Send the adaptive card to the user
-    await sendAdaptiveCard(user, card);
-
     res.json({});
   }
 );
 
-// Register an API endpoint with `restify`. Teams sends messages to your application
-// through this endpoint.
-const teamsBot = new TeamsBot();
-server.post("/api/messages", async (req, res) => {
-  await notificationApp.requestHandler(req, res, async (context) => {
-    await teamsBot.run(context);
-  });
-});
 
 // Initialize Auth and get token
 getAccessToken().then(token => {
@@ -161,6 +76,7 @@ getAccessToken().then(token => {
 // Helper function to find user by AadObjectId
 async function findUserByAadObjectId(aadObjectId: string, credentials: MicrosoftAppCredentials) {
   const graphApiUrl = `https://graph.microsoft.com/v1.0/users/${aadObjectId}`;
+  const token = await credentials.getToken();
 
   try {
     const response = await axios.get(graphApiUrl, {
