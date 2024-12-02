@@ -7,11 +7,14 @@ services:
     ports:
       - "3978:3978"
     env_file:
+      - ./env/.env.dev
+      - ./env/.env.dev.user
       - ./env/.env.local
       - ./env/.env.local.user
+      - ./env/.env.testtool
     environment:
       NODE_ENV: production
     volumes:
       - ./.notification.local.storage.json:/app/.notification.local.storage.json
-      - ./.notification.testtoolstore.json:/app/.notification.local.storage.json
+      - ./.notification.testtoolstore.json:/app/.notification.testtoolstore.json
     restart: always

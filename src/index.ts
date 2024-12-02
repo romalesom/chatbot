@@ -6,6 +6,8 @@ import { Responsibilities, Activities, Following } from "./cardModels";
 import activities from "./adaptiveCards/notification-Activities.json";
 import following from "./adaptiveCards/notification-Following.json";
 import responsibilities from "./adaptiveCards/notification-Responsibilities.json";
+import { Auth } from './auth';
+import { MicrosoftAppCredentials } from 'botframework-connector';
 
 // Create HTTP server.
 const server = restify.createServer();
@@ -13,6 +15,22 @@ server.use(restify.plugins.bodyParser());
 server.listen(process.env.port || process.env.PORT || 3978, () => {
   console.log(`\nApp Started, ${server.name} listening to ${server.url}`);
 });
+
+// Initialize Auth
+const auth = new Auth();
+let accessToken: string | null = null;
+
+// Function to get the access token
+async function getAccessToken() {
+  if (!accessToken) {
+    accessToken = await auth.getToken();
+  }
+  return accessToken;
+}
+
+// Configure MicrosoftAppCredentials
+MicrosoftAppCredentials.trustServiceUrl(process.env.SERVICE_URL);
+const credentials = new MicrosoftAppCredentials(process.env.TEAMS_APP_ID, process.env.TEAMS_APP_PASSWORD);
 
 // Register an API endpoint with `restify`.
 server.post(
@@ -106,6 +124,8 @@ server.post(
     const user = await notificationApp.notification.findMember(
       async (member) => member.account.aadObjectId === aadObjectId
     );
+    console.log("Recieved ID: " + aadObjectId);
+    console.log("User " + user);
 
     if (!user) {
       res.status(404);
@@ -130,4 +150,11 @@ server.post("/api/messages", async (req, res) => {
   await notificationApp.requestHandler(req, res, async (context) => {
     await teamsBot.run(context);
   });
+});
+
+// Initialize Auth and get token
+getAccessToken().then(token => {
+  console.log('Access Token:', token);
+}).catch(error => {
+  console.error('Error acquiring token:', error);
 });

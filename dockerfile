@@ -7,6 +7,9 @@ WORKDIR /app
 # Kopiere die package.json und package-lock.json Dateien
 COPY package*.json ./
 
+# Kopiere die .notification.localstore.json und .notification.testtoolstore.json Dateien
+COPY .notification*.json ./
+
 # Installiere die Abhängigkeiten
 RUN npm install
 
