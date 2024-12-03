@@ -10,6 +10,9 @@ import responsibilities from "./adaptiveCards/notification-Responsibilities.json
 import { Auth } from './auth';
 import { MicrosoftAppCredentials } from 'botframework-connector';
 import { sendAdaptiveCard } from "@microsoft/teamsfx";
+import { Client } from '@microsoft/microsoft-graph-client';
+import { ConfidentialClientApplication } from '@azure/msal-node';
+import { config } from './config';
 
 // Create HTTP server.
 const server = restify.createServer();
@@ -135,8 +138,31 @@ server.post(
       return;
     }
     console.log("Der user:" + user)
-    // Send the adaptive card to the user
-    await sendAdaptiveCard(user, card);
+
+    const options = {
+       authProvider: (done) =>  {
+        accessToken
+        console.log("token,token,token: " + accessToken)
+      },
+    };
+    
+    const client = Client.init(options);
+    console.log("der client:" + client)
+    console.log(await client.api(`/users/${aadObjectId}/teamwork/sendActivityNotification`))
+    await client.api(`/users/${aadObjectId}/teamwork/sendActivityNotification`).post({
+      topic: {
+        source: 'entityUrl',
+        value: `https://graph.microsoft.com/v1.0/users/${aadObjectId}`
+      },
+      activityType: 'eventCreated',
+      previewText: {
+        content: 'New event created'
+      },
+      templateParameters: {
+        card: JSON.stringify(card)
+      }
+    });
+
 
     res.json({});
   }
