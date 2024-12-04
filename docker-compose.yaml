@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   bee360-notification-bot:
     container_name: bee360-notification-bot
@@ -6,6 +5,7 @@ services:
     build: .
     ports:
       - "3978:3978"
+      - "56152:56150"
     env_file:
       - ./env/.env.dev
       - ./env/.env.dev.user

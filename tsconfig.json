@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "module": "ESNext",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "moduleResolution": "node",
+    "declaration": true,
+    "target": "es2017",
+    "module": "NodeNext",
+    "outDir": "./lib",
+    "rootDir": "./",
+    "moduleResolution": "nodenext",
     "sourceMap": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./lib/.tsbuildinfo",
     "resolveJsonModule": true,
-    "strictNullChecks": false,
-    "strict": false
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+    "esModuleInterop": true,
+  }
 }
