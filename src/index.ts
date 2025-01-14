@@ -1,9 +1,8 @@
 import * as ACData from "adaptivecards-templating";
 import * as restify from "restify";
-import notificationTemplate from "./adaptiveCards/notification-Activities.json";
 import { notificationApp } from "./internal/initialize";
 import { TeamsBot } from "./teamsBot";
-import { NotificationTargetType } from "@microsoft/teamsfx";
+import { buildAdaptiveCard } from "./buildAdaptiveCard";
 
 // Create HTTP server.
 const server = restify.createServer();
@@ -28,36 +27,40 @@ server.post(
   restify.plugins.queryParser(),
   restify.plugins.bodyParser(), // Add more parsers if needed
   async (req, res) => {
-    const cardType = req.header('cardType');
-    const aadObjectId = req.header('aadObjectId'); // AadObjectId des Benutzers
-    const { properties, responsible, comment, url } = req.body;
+    //Person who should receive the AdaptiveCard
+    const aadObjectId = req.header('aadObjectId');
+    let card;
 
+    try {
+      //Building the adaptive card
+      card = buildAdaptiveCard(req)
+    }catch (error){
+        res.json(error.code, error.message)
+    }
+    //Identitfy the person from aadObjectId
     const member = await notificationApp.notification.findMember(
       async (m) => m.account.aadObjectId === aadObjectId
     );
-    await member?.sendAdaptiveCard(
-      new ACData.Template(notificationTemplate).expand({
-        $root: {
-          title: "New Event Occurred!",
-          appName: "Contoso App Notification",
-          description: `This is a sample http-triggered notification to ${member.account.name}`,
-          notificationUrl: "https://aka.ms/teamsfx-notification-new",
-        },
-      })
-    )
-    res.json({});
+
+    //Send adaptiveCard to the right person
+    try{
+      await member?.sendAdaptiveCard(card)
+      res.json(201, "Send successfully");
+    }catch{
+      res.json(500,"failed sending card")
+    }
   }
 );
 
-// Register an API endpoint with `restify`. Teams sends messages to your application
-// through this endpoint.
-//
-// The Teams Toolkit bot registration configures the bot with `/api/messages` as the
-// Bot Framework endpoint. If you customize this route, update the Bot registration
-// in `/templates/provision/bot.bicep`.
-const teamsBot = new TeamsBot();
-server.post("/api/messages", async (req, res) => {
-  await notificationApp.requestHandler(req, res, async (context) => {
-    await teamsBot.run(context);
-  });
-});
+  // Register an API endpoint with `restify`. Teams sends messages to your application
+  // through this endpoint.
+  //
+  // The Teams Toolkit bot registration configures the bot with `/api/messages` as the
+  // Bot Framework endpoint. If you customize this route, update the Bot registration
+  // in `/templates/provision/bot.bicep`.
+  // const teamsBot = new TeamsBot();
+  // server.post("/api/messages", async (req, res) => {
+  //   await notificationApp.requestHandler(req, res, async (context) => {
+  //     await teamsBot.run(context);
+  //   });
+  // });

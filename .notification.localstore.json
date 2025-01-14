@@ -19,7 +19,7 @@
     "serviceUrl": "https://smba.trafficmanager.net/de/17a5b20f-fd8e-44fa-bfd6-4fc263f8e0b4/"
   },
   "_17a5b20f-fd8e-44fa-bfd6-4fc263f8e0b4_a:1jtQ07-1ldooQknAQzHfPd5Uap3Z4xjPeNyAfP2DDLejrrVE6GODMhFeE229Wcskhc80ddHDXslM0FpQYGWyv2HQQL5kR7c_6tTE1et6FEl13X-HVvIP7LxG4fRydGVFn": {
-    "activityId": "f:1476c1a4-756d-1236-3eb7-c5453b63a08c",
+    "activityId": "f:e0a04302-cc26-5d84-57a9-8460ba1ecac4",
     "user": {
       "id": "29:16iMXPeb8chiB9Ka0yCkWSe-QgsrsGdhpKD3sGZBPxsrQn1G2qi1xUsx_r8WtKzpsEQ-S_Jdg9cRr9nn5Hyn-Jg",
       "aadObjectId": "e1ae2fa3-8ca5-4bdc-9f78-8fff6761c02a"
@@ -34,7 +34,7 @@
       "id": "a:1jtQ07-1ldooQknAQzHfPd5Uap3Z4xjPeNyAfP2DDLejrrVE6GODMhFeE229Wcskhc80ddHDXslM0FpQYGWyv2HQQL5kR7c_6tTE1et6FEl13X-HVvIP7LxG4fRydGVFn"
     },
     "channelId": "msteams",
-    "locale": "de-DE",
+    "locale": "en-US",
     "serviceUrl": "https://smba.trafficmanager.net/de/17a5b20f-fd8e-44fa-bfd6-4fc263f8e0b4/"
   }
 }
